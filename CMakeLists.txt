@@ -84,9 +84,9 @@ find_package( OpenCV REQUIRED )
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES omni_localization
-#  CATKIN_DEPENDS other_catkin_pkg
+  INCLUDE_DIRS include
+  LIBRARIES ${PROJECT_NAME}
+  CATKIN_DEPENDS roscpp std_msgs soft20
 #  DEPENDS system_lib
 )
 
@@ -125,6 +125,13 @@ add_executable(TEST_export_sphHarm_database
 target_link_libraries(TEST_export_sphHarm_database
    ${catkin_LIBRARIES} fftw3
 )
+
+add_library(${PROJECT_NAME}
+                           src/usefull.cpp
+			   src/sssoft.cpp
+
+)
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
